@@ -23,15 +23,22 @@ export function activate(context: vscode.ExtensionContext) {
 
   registerCommands(context, chatProvider, projectProvider, apiKey);
 
+  // Auto-open the Creative Writer sidebar on startup
+  setTimeout(() => {
+    vscode.commands.executeCommand('workbench.view.extension.creative-writer');
+  }, 1000);
+
   if (!apiKey) {
-    vscode.window.showInformationMessage(
-      'Welcome to Creative Writer! Add your Venice API key to get started.',
-      'Set API Key'
-    ).then((action) => {
-      if (action === 'Set API Key') {
-        vscode.commands.executeCommand('creativeWriter.setApiKey');
-      }
-    });
+    setTimeout(() => {
+      vscode.window.showInformationMessage(
+        'Welcome to Creative Writer! Add your Venice API key to get started.',
+        'Set API Key'
+      ).then((action) => {
+        if (action === 'Set API Key') {
+          vscode.commands.executeCommand('creativeWriter.setApiKey');
+        }
+      });
+    }, 2000);
   }
 
   const watcher = vscode.workspace.createFileSystemWatcher('**/projects/**');
