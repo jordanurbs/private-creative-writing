@@ -184,6 +184,27 @@ export class ChatViewProvider implements vscode.WebviewViewProvider {
         );
         break;
       }
+      case 'continueWriting': {
+        const content = editor?.document.getText();
+        if (!content || content.trim().length < 20) {
+          this.postMessage({
+            type: 'assistantMessage',
+            text: 'Open a file with some writing in it, and I\'ll continue from where you left off.',
+            done: true,
+          });
+          return;
+        }
+        const selection2 = editor?.document.getText(editor!.selection);
+        const textToUse = (selection2 && selection2.trim().length > 10) ? selection2 : content;
+        const label = (selection2 && selection2.trim().length > 10) ? 'selected passage' : 'chapter';
+        const tail = textToUse.length > 6000
+          ? textToUse.slice(-6000)
+          : textToUse;
+        await this.handleUserMessage(
+          `Continue writing this ${label} from where it leaves off. Match the voice, tense, point of view, and tone exactly. Write the next few paragraphs naturally, as if the same author kept going. Don't repeat what's already written -- just pick up where it stops.\n\n---\n\n${tail}`
+        );
+        break;
+      }
     }
   }
 
@@ -538,6 +559,13 @@ export class ChatViewProvider implements vscode.WebviewViewProvider {
         <div>
           <div class="tool-label">Summarize</div>
           <div class="tool-desc">AI summary of the current file</div>
+        </div>
+      </button>
+      <button class="tool-btn" data-action="continueWriting">
+        <span class="tool-icon">&#x25B6;</span>
+        <div>
+          <div class="tool-label">Continue Writing</div>
+          <div class="tool-desc">AI picks up where you left off, matching your voice</div>
         </div>
       </button>
       <button class="tool-btn" data-action="improveSelection">

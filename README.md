@@ -2,7 +2,7 @@
 
 A private AI writing workspace that lives in your code editor. Write novels, short stories, essays, screenplays, poetry, or blog posts with an AI collaborator by your side -- all running locally, all private.
 
-Powered by [Venice AI](https://venice.ai) for uncensored, private AI assistance and image generation.
+Powered by [Venice](https://venice.ai) for uncensored, private AI assistance and image generation.
 
 ---
 
@@ -30,7 +30,7 @@ Powered by [Venice AI](https://venice.ai) for uncensored, private AI assistance 
 
 - A computer (Mac, Windows, or Linux)
 - [VS Code](https://code.visualstudio.com/) (free) or [Cursor](https://cursor.sh/) (free)
-- A Venice AI account with API credits ([venice.ai](https://venice.ai))
+- A Venice account with API credits ([venice.ai](https://venice.ai)—see below for budget estimates) 
 
 ### Step by step
 
