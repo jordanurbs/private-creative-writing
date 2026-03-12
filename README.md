@@ -13,12 +13,16 @@ Powered by [Venice](https://venice.ai) for uncensored, private AI assistance and
 **Project templates** for novels, short stories, essays, screenplays, blogs, and poetry collections. Each comes with a thoughtful folder structure -- outlines, character sheets, research folders, notes.
 
 **Writing tools** with one click:
+- **Continue Writing** -- AI picks up where you left off, matching your voice
+- **Analyze My Style** -- AI reads your prose and builds a style guide it follows
 - Word count, page estimates, reading time
 - Smart formatting (curly quotes, em dashes, clean spacing)
 - AI summaries of your chapters
 - Character and place name generator
 - Creative block helper (prompts to get you unstuck)
 - Image generation for character portraits, settings, mood boards
+
+**A scratch pad** (`notes/`) for random ideas, overheard dialogue, research links -- anything that doesn't belong to a specific project yet.
 
 **A distraction-free editor** tuned for prose. Serif font, generous line height, no clutter. Just you and your words.
 
@@ -40,7 +44,7 @@ Click the green "Code" button on GitHub, then "Download ZIP." Unzip it somewhere
 
 Or if you use git:
 ```
-git clone https://github.com/your-username/private-creative-writing.git
+git clone https://github.com/jordanurbs/private-creative-writing.git
 ```
 
 **2. Get your Venice API key**
@@ -99,9 +103,11 @@ The AI sees your current manuscript and project files, so it knows your characte
 
 | Tool | What it does |
 |------|-------------|
+| Continue Writing | AI picks up where you left off, matching your voice and style |
+| Improve Selection | Select text, get AI suggestions for refinement |
+| Analyze My Style | Reads your writing, generates a style guide the AI follows |
 | Word Count | Words, pages, reading time for the current file |
 | Summarize | AI summary of your current chapter or section |
-| Improve Selection | Select text, get AI suggestions for refinement |
 | Suggest Names | Generate character or place names |
 | Creative Block | A writing prompt to get you unstuck |
 
@@ -111,6 +117,14 @@ Select any text in your manuscript, right-click, and choose:
 - **Ask Writing Assistant** -- Send the selection to your AI for feedback
 - **Word Count** -- Quick stats
 - **Format & Clean Up** -- Fix quotes, dashes, spacing
+
+### Continue Writing
+
+Open the chapter you're working on, then click **Continue Writing** in the Tools panel. The AI reads your text (or just your selection, if you highlight a passage) and writes the next few paragraphs in your voice. It matches your tense, point of view, sentence rhythm, and tone.
+
+### Style Guide
+
+Every project includes a `style-guide.md` file. You can fill it in yourself, or click **Analyze My Style** after you've written a few pages -- the AI will read your prose and generate a detailed style profile covering sentence structure, vocabulary, dialogue style, imagery, tone, and quirks. Once created, the style guide is injected into every AI interaction, so Continue Writing, Improve Selection, and chat responses all stay consistent with your voice.
 
 ### Image Generation
 
@@ -124,14 +138,18 @@ When you create a new project (click + in the Project panel), you choose a type:
 
 | Type | Structure |
 |------|-----------|
-| **Novel** | chapters/, characters/, notes/, research/, world-building/, outline |
-| **Short Story** | story file, notes |
-| **Essay** | outline, drafts/, research/ |
-| **Blog** | posts/, drafts/ |
-| **Screenplay** | acts/, characters/, notes/, outline |
-| **Poetry Collection** | poems/, notes/ |
+| **Novel** | chapters/, characters/, notes/, research/, world-building/, outline, style guide |
+| **Short Story** | story file, notes, style guide |
+| **Essay** | outline, drafts/, research/, style guide |
+| **Blog** | posts/, drafts/, style guide |
+| **Screenplay** | acts/, characters/, notes/, outline, style guide |
+| **Poetry Collection** | poems/, notes/, style guide |
+
+Every project also gets a `style-guide.md` for the AI to follow (see Style Guide above).
 
 All files are **Markdown** (.md) -- a simple format that works everywhere. You can always export to other formats later.
+
+There's also a top-level `notes/` directory with a scratch pad for ideas that don't belong to any project.
 
 ---
 
