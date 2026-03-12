@@ -1,0 +1,172 @@
+{
+  "name": "creative-writer",
+  "displayName": "Creative Writer",
+  "description": "Private AI writing assistant powered by Venice AI. A distraction-free creative writing workspace with AI chat, project scaffolding, and image generation.",
+  "version": "0.1.0",
+  "publisher": "private-creative-writing",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "creative-writer",
+          "title": "Creative Writer",
+          "icon": "media/icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "creative-writer": [
+        {
+          "type": "webview",
+          "id": "creativeWriter.chatView",
+          "name": "Writing Assistant"
+        },
+        {
+          "id": "creativeWriter.projectView",
+          "name": "Project Files"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "creativeWriter.newProject",
+        "title": "New Writing Project",
+        "category": "Creative Writer",
+        "icon": "$(add)"
+      },
+      {
+        "command": "creativeWriter.wordCount",
+        "title": "Word Count & Stats",
+        "category": "Creative Writer",
+        "icon": "$(symbol-number)"
+      },
+      {
+        "command": "creativeWriter.spellCheck",
+        "title": "Spell Check",
+        "category": "Creative Writer",
+        "icon": "$(check)"
+      },
+      {
+        "command": "creativeWriter.formatText",
+        "title": "Format & Clean Up",
+        "category": "Creative Writer",
+        "icon": "$(edit)"
+      },
+      {
+        "command": "creativeWriter.generateImage",
+        "title": "Generate Image",
+        "category": "Creative Writer",
+        "icon": "$(file-media)"
+      },
+      {
+        "command": "creativeWriter.creativeHelp",
+        "title": "Creative Block Helper",
+        "category": "Creative Writer",
+        "icon": "$(lightbulb)"
+      },
+      {
+        "command": "creativeWriter.askAI",
+        "title": "Ask Writing Assistant",
+        "category": "Creative Writer",
+        "icon": "$(comment-discussion)"
+      },
+      {
+        "command": "creativeWriter.summarize",
+        "title": "Summarize Current File",
+        "category": "Creative Writer",
+        "icon": "$(list-flat)"
+      },
+      {
+        "command": "creativeWriter.suggestNames",
+        "title": "Suggest Names",
+        "category": "Creative Writer",
+        "icon": "$(person)"
+      },
+      {
+        "command": "creativeWriter.refreshProject",
+        "title": "Refresh Project View",
+        "category": "Creative Writer",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "creativeWriter.setApiKey",
+        "title": "Set Venice API Key",
+        "category": "Creative Writer",
+        "icon": "$(key)"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "creativeWriter.askAI",
+          "group": "creative-writer@1",
+          "when": "editorHasSelection"
+        },
+        {
+          "command": "creativeWriter.wordCount",
+          "group": "creative-writer@2"
+        },
+        {
+          "command": "creativeWriter.formatText",
+          "group": "creative-writer@3"
+        }
+      ],
+      "view/title": [
+        {
+          "command": "creativeWriter.newProject",
+          "when": "view == creativeWriter.projectView",
+          "group": "navigation"
+        },
+        {
+          "command": "creativeWriter.refreshProject",
+          "when": "view == creativeWriter.projectView",
+          "group": "navigation"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Creative Writer",
+      "properties": {
+        "creativeWriter.model": {
+          "type": "string",
+          "default": "olafangensan-glm-4.7-flash-heretic",
+          "description": "Venice AI model ID for the writing assistant."
+        },
+        "creativeWriter.imageModel": {
+          "type": "string",
+          "default": "nano-banana-pro",
+          "description": "Venice AI model ID for image generation."
+        },
+        "creativeWriter.apiEndpoint": {
+          "type": "string",
+          "default": "https://api.venice.ai/api/v1",
+          "description": "Venice AI API base URL."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "build": "esbuild ./src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node --target=node18",
+    "watch": "npm run build -- --watch",
+    "package": "npm run build && npx @vscode/vsce package --no-dependencies",
+    "lint": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.85.0",
+    "@vscode/vsce": "^3.0.0",
+    "esbuild": "^0.24.0",
+    "typescript": "^5.5.0"
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "editor.wordWrap": "on",
+  "editor.wordWrapColumn": 80,
+  "editor.wrappingIndent": "same",
+  "editor.fontSize": 15,
+  "editor.lineHeight": 1.8,
+  "editor.fontFamily": "\"Georgia\", \"Times New Roman\", serif",
+  "editor.minimap.enabled": false,
+  "editor.renderWhitespace": "none",
+  "editor.cursorBlinking": "smooth",
+  "editor.cursorSmoothCaretAnimation": "on",
+  "editor.smoothScrolling": true,
+  "editor.lineNumbers": "off",
+  "editor.glyphMargin": false,
+  "editor.folding": false,
+  "editor.renderLineHighlight": "none",
+  "editor.overviewRulerBorder": false,
+  "editor.hideCursorInOverviewRuler": true,
+  "editor.occurrencesHighlight": "off",
+  "editor.selectionHighlight": false,
+  "editor.padding.top": 40,
+  "editor.padding.bottom": 40,
+
+  "breadcrumbs.enabled": false,
+
+  "workbench.editor.showTabs": "single",
+  "workbench.activityBar.location": "default",
+  "workbench.statusBar.visible": true,
+
+  "markdown.preview.fontSize": 16,
+  "markdown.preview.lineHeight": 1.8,
+
+  "files.defaultLanguage": "markdown",
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 3000,
+
+  "explorer.confirmDelete": true,
+  "explorer.confirmDragAndDrop": false,
+
+  "zenMode.hideLineNumbers": true,
+  "zenMode.hideTabs": true,
+  "zenMode.hideStatusBar": false,
+  "zenMode.centerLayout": true,
+  "zenMode.fullScreen": false,
+
+  "[markdown]": {
+    "editor.quickSuggestions": {
+      "other": false,
+      "comments": false,
+      "strings": false
+    },
+    "editor.acceptSuggestionOnEnter": "off",
+    "editor.wordBasedSuggestions": "off"
+  }
+}
