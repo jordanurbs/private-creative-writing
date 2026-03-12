@@ -107,6 +107,22 @@ if exist ".env" (
 )
 
 :: --------------------------------------------------
+:: 6. Create notes directory
+:: --------------------------------------------------
+if not exist "notes" (
+    mkdir notes
+    (
+        echo # Scratch Pad
+        echo.
+        echo Jot down anything here -- ideas, fragments, reminders, research links, things you overheard on the bus. This file isn't tied to any project. It's just for you.
+        echo.
+        echo ---
+        echo.
+    ) > notes\scratch-pad.md
+    echo   notes/ directory created
+)
+
+:: --------------------------------------------------
 :: Done
 :: --------------------------------------------------
 echo.

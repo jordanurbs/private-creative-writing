@@ -114,6 +114,23 @@ else
 fi
 
 # --------------------------------------------------
+# 6. Create notes directory
+# --------------------------------------------------
+if [ ! -d "notes" ]; then
+  mkdir -p notes
+  cat > notes/scratch-pad.md << 'NOTES'
+# Scratch Pad
+
+Jot down anything here -- ideas, fragments, reminders, research links, things you overheard on the bus. This file isn't tied to any project. It's just for you.
+
+---
+
+
+NOTES
+  echo -e "  ${GREEN}✓${NC} notes/ directory created"
+fi
+
+# --------------------------------------------------
 # Done!
 # --------------------------------------------------
 echo ""
