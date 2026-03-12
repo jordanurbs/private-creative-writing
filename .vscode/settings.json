@@ -25,7 +25,6 @@
 
   "workbench.editor.showTabs": "single",
   "workbench.activityBar.location": "default",
-  "workbench.sideBar.location": "right",
   "workbench.statusBar.visible": true,
 
   "markdown.preview.fontSize": 16,
