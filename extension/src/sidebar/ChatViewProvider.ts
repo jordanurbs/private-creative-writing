@@ -216,6 +216,10 @@ export class ChatViewProvider implements vscode.WebviewViewProvider {
         }
         break;
       }
+      case 'importDocument': {
+        vscode.commands.executeCommand('creativeWriter.importDocument');
+        break;
+      }
       case 'continueWriting': {
         const content = editor?.document.getText();
         if (!content || content.trim().length < 20) {
@@ -643,6 +647,13 @@ export class ChatViewProvider implements vscode.WebviewViewProvider {
         <div>
           <div class="tool-label">Creative Block Helper</div>
           <div class="tool-desc">A prompt to get you unstuck</div>
+        </div>
+      </button>
+      <button class="tool-btn" data-action="importDocument">
+        <span class="tool-icon">&#x1F4C4;</span>
+        <div>
+          <div class="tool-label">Import Document</div>
+          <div class="tool-desc">Import a .docx or .txt file, auto-split into chapters</div>
         </div>
       </button>
     </div>
