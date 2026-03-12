@@ -38,7 +38,15 @@ Powered by [Venice](https://venice.ai) for uncensored, private AI assistance and
 
 ### Step by step
 
-**1. Download this project**
+**1. Install an editor**
+
+Download and install one of these (both are free):
+- [VS Code](https://code.visualstudio.com/) -- the most popular code editor, works great for writing too
+- [Cursor](https://cursor.sh/) -- a VS Code fork with extra AI features built in
+
+Either one works. Install it, open it once so it finishes setup, then close it.
+
+**2. Download this project**
 
 Click the green "Code" button on GitHub, then "Download ZIP." Unzip it somewhere you'll remember.
 
@@ -47,14 +55,14 @@ Or if you use git:
 git clone https://github.com/jordanurbs/private-creative-writing.git
 ```
 
-**2. Get your Venice API key**
+**3. Get your Venice API key**
 
 1. Go to [venice.ai/settings/api](https://venice.ai/settings/api)
 2. Create an account if you don't have one
 3. Click "Create API Key"
-4. Copy the key (it starts with `vn_`)
+4. Copy the key
 
-**3. Run the setup script**
+**4. Run the setup script**
 
 Open a terminal in the project folder:
 
@@ -73,7 +81,7 @@ The script will:
 - Ask for your API key
 - Open the workspace
 
-**4. Start writing**
+**5. Start writing**
 
 Look for the **pen icon** in the left sidebar. Click it to open your AI writing assistant.
 
