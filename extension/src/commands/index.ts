@@ -14,6 +14,7 @@ import {
 } from './writingTools';
 import { generateImageCommand } from './generateImage';
 import { importDocumentCommand } from './importDocument';
+import { exportProjectCommand } from './exportProject';
 import { ProjectTreeProvider } from '../views/ProjectTreeProvider';
 
 export function registerCommands(
@@ -39,6 +40,7 @@ export function registerCommands(
     ['creativeWriter.importDocument', () => {
       importDocumentCommand().then(() => projectProvider.refresh());
     }],
+    ['creativeWriter.exportProject', exportProjectCommand],
     ['creativeWriter.refreshProject', () => projectProvider.refresh()],
     ['creativeWriter.setApiKey', () => setApiKeyCommand(chatProvider)],
   ];

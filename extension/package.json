@@ -106,6 +106,12 @@
         "icon": "$(folder-opened)"
       },
       {
+        "command": "creativeWriter.exportProject",
+        "title": "Export Project (.docx / .pdf / .epub)",
+        "category": "Creative Writer",
+        "icon": "$(export)"
+      },
+      {
         "command": "creativeWriter.setApiKey",
         "title": "Set Venice API Key",
         "category": "Creative Writer",
@@ -170,12 +176,16 @@
   },
   "devDependencies": {
     "@types/node": "^20.0.0",
+    "@types/pdfkit": "^0.17.5",
     "@types/vscode": "^1.85.0",
     "@vscode/vsce": "^3.0.0",
     "esbuild": "^0.24.0",
     "typescript": "^5.5.0"
   },
   "dependencies": {
-    "mammoth": "^1.12.0"
+    "docx": "^9.6.1",
+    "jszip": "^3.10.1",
+    "mammoth": "^1.12.0",
+    "pdfkit": "^0.17.2"
   }
 }

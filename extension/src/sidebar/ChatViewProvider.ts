@@ -220,6 +220,10 @@ export class ChatViewProvider implements vscode.WebviewViewProvider {
         vscode.commands.executeCommand('creativeWriter.importDocument');
         break;
       }
+      case 'exportProject': {
+        vscode.commands.executeCommand('creativeWriter.exportProject');
+        break;
+      }
       case 'continueWriting': {
         const content = editor?.document.getText();
         if (!content || content.trim().length < 20) {
@@ -654,6 +658,13 @@ export class ChatViewProvider implements vscode.WebviewViewProvider {
         <div>
           <div class="tool-label">Import Document</div>
           <div class="tool-desc">Import a .docx or .txt file, auto-split into chapters</div>
+        </div>
+      </button>
+      <button class="tool-btn" data-action="exportProject">
+        <span class="tool-icon">&#x1F4BE;</span>
+        <div>
+          <div class="tool-label">Export Project</div>
+          <div class="tool-desc">Save as .docx, .pdf, or .epub</div>
         </div>
       </button>
     </div>
