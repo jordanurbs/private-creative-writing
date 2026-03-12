@@ -100,6 +100,12 @@
         "icon": "$(refresh)"
       },
       {
+        "command": "creativeWriter.importDocument",
+        "title": "Import Document (.docx / .txt)",
+        "category": "Creative Writer",
+        "icon": "$(folder-opened)"
+      },
+      {
         "command": "creativeWriter.setApiKey",
         "title": "Set Venice API Key",
         "category": "Creative Writer",
@@ -168,5 +174,8 @@
     "@vscode/vsce": "^3.0.0",
     "esbuild": "^0.24.0",
     "typescript": "^5.5.0"
+  },
+  "dependencies": {
+    "mammoth": "^1.12.0"
   }
 }

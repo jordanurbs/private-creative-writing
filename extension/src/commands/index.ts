@@ -13,6 +13,7 @@ import {
   setApiKeyCommand,
 } from './writingTools';
 import { generateImageCommand } from './generateImage';
+import { importDocumentCommand } from './importDocument';
 import { ProjectTreeProvider } from '../views/ProjectTreeProvider';
 
 export function registerCommands(
@@ -35,6 +36,9 @@ export function registerCommands(
     ['creativeWriter.summarize', () => summarizeCommand(chatProvider)],
     ['creativeWriter.suggestNames', () => suggestNamesCommand(chatProvider)],
     ['creativeWriter.generateImage', () => generateImageCommand(client)],
+    ['creativeWriter.importDocument', () => {
+      importDocumentCommand().then(() => projectProvider.refresh());
+    }],
     ['creativeWriter.refreshProject', () => projectProvider.refresh()],
     ['creativeWriter.setApiKey', () => setApiKeyCommand(chatProvider)],
   ];
