@@ -34,6 +34,7 @@ export function buildContextPrompt(context: {
   currentContent?: string;
   outline?: string;
   characters?: string;
+  styleGuide?: string;
 }): string {
   const parts: string[] = [];
 
@@ -41,6 +42,10 @@ export function buildContextPrompt(context: {
     parts.push(`## Current project`);
     if (context.projectTitle) { parts.push(`Title: ${context.projectTitle}`); }
     if (context.projectType) { parts.push(`Type: ${context.projectType}`); }
+  }
+
+  if (context.styleGuide) {
+    parts.push(`\n## Writer's style guide — FOLLOW THIS CLOSELY when writing or suggesting prose\n${context.styleGuide}`);
   }
 
   if (context.currentFile) {
@@ -91,6 +96,20 @@ export const NAME_GENERATOR_PROMPT = `Generate a list of 10 character names base
 - Origin or cultural background of the name
 
 Format as a clean list. Be creative and varied -- mix common and unusual, short and long, different cultural origins unless a specific origin is requested.`;
+
+export const STYLE_ANALYSIS_PROMPT = `Analyze this writing sample and produce a concise style guide that another writer (or AI) could follow to replicate this voice exactly. Cover these dimensions:
+
+- **Point of view & tense** (e.g. close third-person, past tense)
+- **Sentence structure** (long flowing sentences? Short punchy ones? A mix? How is rhythm created?)
+- **Vocabulary register** (literary, conversational, sparse, lush, technical, colloquial?)
+- **Dialogue style** (naturalistic? Stylized? How are tags handled — "said" only, or varied? Punctuation conventions?)
+- **Imagery & description** (how sensory? Which senses dominate? Metaphor-heavy or literal?)
+- **Emotional tone** (detached, intimate, wry, earnest, dark-humored?)
+- **Pacing** (does the prose linger or drive forward? How are transitions handled?)
+- **What this voice avoids** (adverbs? Exclamation marks? Purple prose? Certain words?)
+- **Distinctive quirks** (anything unusual — sentence fragments as style, lack of quotation marks, second person, etc.)
+
+Write the guide in second person ("You write in...") so it reads as direct instructions. Keep it under 400 words. Be specific — quote brief examples from the sample where helpful.`;
 
 export const SUMMARIZE_PROMPT = `Read the following text and provide a concise summary that captures:
 1. The key events or arguments

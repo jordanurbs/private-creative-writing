@@ -43,7 +43,7 @@ Or if you use git:
 git clone https://github.com/your-username/private-creative-writing.git
 ```
 
-**2. Get your Venice AI key**
+**2. Get your Venice API key**
 
 1. Go to [venice.ai/settings/api](https://venice.ai/settings/api)
 2. Create an account if you don't have one

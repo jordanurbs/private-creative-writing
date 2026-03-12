@@ -6,6 +6,7 @@ import {
   WRITING_ASSISTANT_SYSTEM,
   buildContextPrompt,
   CREATIVE_BLOCK_PROMPTS,
+  STYLE_ANALYSIS_PROMPT,
 } from '../venice/prompts';
 import { getTextStats } from '../utils/markdown';
 
@@ -184,6 +185,37 @@ export class ChatViewProvider implements vscode.WebviewViewProvider {
         );
         break;
       }
+      case 'analyzeStyle': {
+        const content = editor?.document.getText();
+        if (!content || content.trim().length < 200) {
+          this.postMessage({
+            type: 'assistantMessage',
+            text: 'Open a file with at least a few paragraphs of your writing. I\'ll analyze your style and create a guide the AI will follow whenever it writes for you.',
+            done: true,
+          });
+          return;
+        }
+        const sample = content.length > 8000 ? content.slice(0, 8000) : content;
+        await this.handleUserMessage(
+          `${STYLE_ANALYSIS_PROMPT}\n\n---\n\n${sample}\n\n---\n\nAfter you produce the style guide, I'll save it to my project's style-guide.md file so the AI uses it every time.`
+        );
+
+        const projectDir = this.getProjectDir();
+        if (projectDir && this.conversationHistory.length > 0) {
+          const lastMsg = this.conversationHistory[this.conversationHistory.length - 1];
+          if (lastMsg.role === 'assistant' && lastMsg.content.length > 50) {
+            const sgPath = path.join(projectDir, 'style-guide.md');
+            const header = '# Style Guide\n\n*Auto-generated from your manuscript. Edit freely to refine.*\n\n---\n\n';
+            fs.writeFileSync(sgPath, header + lastMsg.content);
+            this.postMessage({
+              type: 'assistantMessage',
+              text: 'Style guide saved to `style-guide.md` in your project folder. The AI will follow it from now on. You can edit it anytime to fine-tune.',
+              done: true,
+            });
+          }
+        }
+        break;
+      }
       case 'continueWriting': {
         const content = editor?.document.getText();
         if (!content || content.trim().length < 20) {
@@ -208,6 +240,15 @@ export class ChatViewProvider implements vscode.WebviewViewProvider {
     }
   }
 
+  private getProjectDir(): string | undefined {
+    const editor = vscode.window.activeTextEditor;
+    if (!editor) { return undefined; }
+    const currentFile = editor.document.fileName;
+    const projectMatch = currentFile.match(/projects[/\\]([^/\\]+)/);
+    if (!projectMatch) { return undefined; }
+    return currentFile.slice(0, currentFile.indexOf(projectMatch[0]) + projectMatch[0].length);
+  }
+
   private gatherContext(): string {
     const editor = vscode.window.activeTextEditor;
     if (!editor) { return ''; }
@@ -219,17 +260,24 @@ export class ChatViewProvider implements vscode.WebviewViewProvider {
     let projectTitle: string | undefined;
     let outline: string | undefined;
     let characters: string | undefined;
+    let styleGuide: string | undefined;
 
-    const projectMatch = currentFile.match(/projects[/\\]([^/\\]+)/);
-    if (projectMatch) {
-      projectTitle = projectMatch[1].replace(/[-_]/g, ' ');
-
-      const projectDir = currentFile.slice(0, currentFile.indexOf(projectMatch[0]) + projectMatch[0].length);
+    const projectDir = this.getProjectDir();
+    if (projectDir) {
+      const projectMatch = currentFile.match(/projects[/\\]([^/\\]+)/);
+      projectTitle = projectMatch?.[1]?.replace(/[-_]/g, ' ');
 
       const outlinePath = path.join(projectDir, 'outline.md');
       if (fs.existsSync(outlinePath)) {
         try {
           outline = fs.readFileSync(outlinePath, 'utf-8').slice(0, 4000);
+        } catch { /* ignore */ }
+      }
+
+      const stylePath = path.join(projectDir, 'style-guide.md');
+      if (fs.existsSync(stylePath)) {
+        try {
+          styleGuide = fs.readFileSync(stylePath, 'utf-8').slice(0, 3000);
         } catch { /* ignore */ }
       }
 
@@ -255,6 +303,7 @@ export class ChatViewProvider implements vscode.WebviewViewProvider {
       currentContent: currentContent.slice(0, 8000),
       outline,
       characters,
+      styleGuide,
     });
   }
 
@@ -580,6 +629,13 @@ export class ChatViewProvider implements vscode.WebviewViewProvider {
         <div>
           <div class="tool-label">Suggest Names</div>
           <div class="tool-desc">Generate character or place names</div>
+        </div>
+      </button>
+      <button class="tool-btn" data-action="analyzeStyle">
+        <span class="tool-icon">&#x1F58B;</span>
+        <div>
+          <div class="tool-label">Analyze My Style</div>
+          <div class="tool-desc">AI reads your writing, creates a style guide it follows</div>
         </div>
       </button>
       <button class="tool-btn" data-action="creativeBlock">
