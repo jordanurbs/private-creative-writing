@@ -2,8 +2,8 @@ node_modules/
 dist/
 *.vsix
 .env
-projects/
-!projects/.gitkeep
+projects/*
+!projects/README.md
 .DS_Store
 Thumbs.db
 *.swp

@@ -705,7 +705,7 @@ export class ChatViewProvider implements vscode.WebviewViewProvider {
   });
 
   clearBtn.addEventListener('click', () => {
-    messagesEl.innerHTML = '<div class="welcome"><h3>Your Writing Assistant</h3><p>Ask me anything about your story, characters, or craft. I\\\'m here to help you write.</p></div>';
+    messagesEl.innerHTML = '<div class="welcome"><h3>Your Writing Assistant</h3><p>Ask me anything about your story, characters, or craft. Ready when you are.</p></div>';
     vscode.postMessage({ type: 'clearChat' });
   });
 
@@ -797,7 +797,7 @@ export class ChatViewProvider implements vscode.WebviewViewProvider {
         break;
 
       case 'apiKeySet':
-        addMessage('system', 'API key updated. You\\\'re ready to write!');
+        addMessage('system', "API key updated. You are ready to write!");
         break;
 
       case 'insertUserMessage':
