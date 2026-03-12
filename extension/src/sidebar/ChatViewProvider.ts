@@ -753,8 +753,9 @@ export class ChatViewProvider implements vscode.WebviewViewProvider {
     html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
     // Italic
     html = html.replace(/\*(.+?)\*/g, '<em>$1</em>');
-    // Inline code
-    html = html.replace(/\`([^\`]+)\`/g, '<code>$1</code>');
+    // Inline code (using RegExp constructor to avoid backtick issues in template literal)
+    var codeRe = new RegExp(String.fromCharCode(96) + '([^' + String.fromCharCode(96) + ']+)' + String.fromCharCode(96), 'g');
+    html = html.replace(codeRe, '<code>$1</code>');
     // Line breaks
     html = html.replace(/\\n/g, '<br>');
 
