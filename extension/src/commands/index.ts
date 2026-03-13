@@ -15,6 +15,7 @@ import {
 import { generateImageCommand } from './generateImage';
 import { importDocumentCommand } from './importDocument';
 import { exportProjectCommand } from './exportProject';
+import { analyzeNovelCommand, rewriteChapterCommand } from './rewrite';
 import { ProjectTreeProvider } from '../views/ProjectTreeProvider';
 
 export function registerCommands(
@@ -41,6 +42,8 @@ export function registerCommands(
       importDocumentCommand().then(() => projectProvider.refresh());
     }],
     ['creativeWriter.exportProject', exportProjectCommand],
+    ['creativeWriter.analyzeNovel', () => analyzeNovelCommand(client)],
+    ['creativeWriter.rewriteChapter', () => rewriteChapterCommand(client)],
     ['creativeWriter.refreshProject', () => projectProvider.refresh()],
     ['creativeWriter.setApiKey', () => setApiKeyCommand(chatProvider)],
   ];

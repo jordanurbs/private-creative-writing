@@ -112,6 +112,18 @@
         "icon": "$(export)"
       },
       {
+        "command": "creativeWriter.analyzeNovel",
+        "title": "Analyze Novel for Rewrite",
+        "category": "Creative Writer",
+        "icon": "$(search)"
+      },
+      {
+        "command": "creativeWriter.rewriteChapter",
+        "title": "Rewrite Current Chapter",
+        "category": "Creative Writer",
+        "icon": "$(replace-all)"
+      },
+      {
         "command": "creativeWriter.setApiKey",
         "title": "Set Venice API Key",
         "category": "Creative Writer",

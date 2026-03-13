@@ -224,6 +224,14 @@ export class ChatViewProvider implements vscode.WebviewViewProvider {
         vscode.commands.executeCommand('creativeWriter.exportProject');
         break;
       }
+      case 'analyzeNovel': {
+        vscode.commands.executeCommand('creativeWriter.analyzeNovel');
+        break;
+      }
+      case 'rewriteChapter': {
+        vscode.commands.executeCommand('creativeWriter.rewriteChapter');
+        break;
+      }
       case 'continueWriting': {
         const content = editor?.document.getText();
         if (!content || content.trim().length < 20) {
@@ -665,6 +673,23 @@ export class ChatViewProvider implements vscode.WebviewViewProvider {
         <div>
           <div class="tool-label">Export Project</div>
           <div class="tool-desc">Save as .docx, .pdf, or .epub</div>
+        </div>
+      </button>
+      <div style="border-top:1px solid var(--border);margin:8px 0;padding-top:4px">
+        <div style="font-size:10px;text-transform:uppercase;letter-spacing:0.5px;color:var(--muted);padding:4px 0">Rewrite Tools</div>
+      </div>
+      <button class="tool-btn" data-action="analyzeNovel">
+        <span class="tool-icon">&#x1F50D;</span>
+        <div>
+          <div class="tool-label">Analyze Novel</div>
+          <div class="tool-desc">5 AI passes: characters, plot, themes, style, settings</div>
+        </div>
+      </button>
+      <button class="tool-btn" data-action="rewriteChapter">
+        <span class="tool-icon">&#x1F504;</span>
+        <div>
+          <div class="tool-label">Rewrite Chapter</div>
+          <div class="tool-desc">AI rewrites the open chapter using your analysis</div>
         </div>
       </button>
     </div>
