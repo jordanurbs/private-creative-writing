@@ -10,6 +10,7 @@ const PROJECT_TYPES = [
   { label: 'Blog', description: 'Blog posts and drafts', value: 'blog' },
   { label: 'Screenplay', description: 'Acts, characters, scenes', value: 'screenplay' },
   { label: 'Poetry Collection', description: 'Poems with notes', value: 'poetry-collection' },
+  { label: 'Memoir', description: 'Personal narrative with timeline and reflections', value: 'memoir' },
 ];
 
 export async function newProjectCommand() {
@@ -137,6 +138,17 @@ function createDefaultStructure(dir: string, type: string, title: string) {
       fs.mkdirSync(path.join(dir, 'poems'), { recursive: true });
       fs.mkdirSync(path.join(dir, 'notes'), { recursive: true });
       fs.writeFileSync(path.join(dir, 'poems', 'untitled-1.md'), `# Untitled\n\n`);
+      break;
+    case 'memoir':
+      fs.mkdirSync(path.join(dir, 'chapters'), { recursive: true });
+      fs.mkdirSync(path.join(dir, 'timeline'), { recursive: true });
+      fs.mkdirSync(path.join(dir, 'people'), { recursive: true });
+      fs.mkdirSync(path.join(dir, 'reflections'), { recursive: true });
+      fs.mkdirSync(path.join(dir, 'research'), { recursive: true });
+      fs.mkdirSync(path.join(dir, 'images'), { recursive: true });
+      fs.writeFileSync(path.join(dir, 'outline.md'), `# ${title} — Outline\n\n## Theme\n\n## Timeline\n\n## Key Events\n\n## Emotional Arc\n`);
+      fs.writeFileSync(path.join(dir, 'chapters', '01-chapter-one.md'), `# Chapter One\n\n`);
+      fs.writeFileSync(path.join(dir, 'timeline', 'chronology.md'), `# Timeline\n\n## Early Years\n\n## Key Turning Points\n\n## Present Day\n`);
       break;
   }
 
